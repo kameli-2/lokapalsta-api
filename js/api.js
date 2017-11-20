@@ -11,10 +11,10 @@ class Api {
      */
     fetchPosts(id) {
         if (typeof id === 'number') {
-            return this._queryDb('SELECT * FROM `posts` WHERE `id` = ' + id);
+            return this._queryDb('SELECT * FROM posts WHERE id = ' + id);
         }
         else {
-            return this._queryDb('SELECT * FROM `posts`');
+            return this._queryDb('SELECT * FROM posts');
         }
     }
 
@@ -26,8 +26,10 @@ class Api {
      */
     _queryDb(query) {
         let dbResult = null;
+        const pool = new pg.Pool()
 
-        pg.connect(process.env.DATABASE_URL, function (err, client, done) {
+        // connection using created pool
+        pool.connect(function (err, client, done) {
             client.query(query, function (err, result) {
                 done();
                 if (err) {
@@ -38,7 +40,10 @@ class Api {
                     dbResult = result.rows;
                 }
             });
-        });
+        })
+
+        // pool shutdown
+        pool.end()
 
         return dbResult;
     }
