@@ -1,0 +1,26 @@
+{
+    "name": "lokapalsta-api",
+    "version": "0.0.1",
+    "description": "Lokapalsta API",
+    "engines": {
+        "node": "8.9.1"
+    },
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "pg": "6.x",
+        "ejs": "^2.5.6",
+        "express": "^4.15.2"
+    },
+    "devDependencies": {
+        "request": "^2.81.0",
+        "tape": "^4.7.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kameli-2/lokapalsta-api"
+    },
+    "license": "MIT"
+}
