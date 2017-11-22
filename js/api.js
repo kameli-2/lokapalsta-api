@@ -30,15 +30,20 @@ class Api {
 
         // connection using created pool
         pool.connect(function (err, client, done) {
+            if (err) {
+                console.log(err);
+                return false;
+            }
+            
             client.query(query, function (err, result) {
                 done();
                 if (err) {
                     // TODO: error handling
                     console.error(err);
+                    return false;
                 }
-                else {
-                    dbResult = result.rows;
-                }
+                
+                dbResult = result.rows;
             });
         })
 
