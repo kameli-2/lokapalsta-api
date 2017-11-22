@@ -1,4 +1,4 @@
-const pg = require('pg')
+const { Client } = require('pg')
 
 class Api {
     __constructor() {}
@@ -27,7 +27,7 @@ class Api {
     _queryDb(query) {
         let dbResult = null;
 
-        const client = new pg.Client({
+        const client = new Client({
             connectionString: process.env.DATABASE_URL,
             ssl: true,
         });

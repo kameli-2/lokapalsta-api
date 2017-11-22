@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-const pg = require('pg')
 const Api = require('./js/api')
 const PORT = process.env.PORT || 5000
 
