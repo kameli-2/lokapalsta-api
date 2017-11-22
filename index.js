@@ -11,5 +11,8 @@ express()
     .set('views', path.join(__dirname, 'views'))
     //.set('view engine', 'ejs')
     //.get('/', (req, res) => res.render('pages/index'))
-    .get('/fetchPosts', (req, res) => res.send(api.fetchPosts()))
+    .get('/fetchPosts', function(req, res) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(api.fetchPosts()));
+    })
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
