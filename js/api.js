@@ -26,7 +26,25 @@ class Api {
      */
     _queryDb(query) {
         let dbResult = null;
-        const pool = new pg.Pool()
+
+        const client = new pg.Client({
+            connectionString: process.env.DATABASE_URL,
+            ssl: true,
+        });
+
+        client.connect();
+
+        client.query(query, (err, res) => {
+            if (err) throw err;
+            dbResult = res.rows;
+            client.end();
+        });
+
+        /*
+        const pool = new pg.Pool({
+            host: '',
+            user: ''
+        })
 
         // connection using created pool
         pool.connect(function (err, client, done) {
@@ -49,6 +67,7 @@ class Api {
 
         // pool shutdown
         pool.end()
+        */
 
         return dbResult;
     }
