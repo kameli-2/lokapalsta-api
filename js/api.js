@@ -11,10 +11,10 @@ class Api {
      */
     fetchPosts(id) {
         if (typeof id === 'number') {
-            return this._queryDb('SELECT * FROM posts WHERE id = ' + id);
+            return this._queryDb('SELECT * FROM posts WHERE id = ' + id + ';');
         }
         else {
-            return this._queryDb('SELECT * FROM posts');
+            return this._queryDb('SELECT * FROM posts;');
         }
     }
 
