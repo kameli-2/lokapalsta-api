@@ -36,38 +36,9 @@ class Api {
 
         client.query(query, (err, res) => {
             if (err) throw err;
-            dbResult = res.rows;
+            dbResult = res;
             client.end();
         });
-
-        /*
-        const pool = new pg.Pool({
-            host: '',
-            user: ''
-        })
-
-        // connection using created pool
-        pool.connect(function (err, client, done) {
-            if (err) {
-                console.log(err);
-                return false;
-            }
-            
-            client.query(query, function (err, result) {
-                done();
-                if (err) {
-                    // TODO: error handling
-                    console.error(err);
-                    return false;
-                }
-                
-                dbResult = result.rows;
-            });
-        })
-
-        // pool shutdown
-        pool.end()
-        */
 
         return dbResult;
     }
